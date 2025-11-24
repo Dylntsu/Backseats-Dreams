@@ -1,0 +1,884 @@
+fileFormatVersion: 2
+guid: ff3152794187a034ea1f2f752080e6ce
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8714402706420767782
+    second: jumpPlaye2_0
+  - first:
+      213: 1612338482517471617
+    second: jumpPlaye2_1
+  - first:
+      213: 39628155483652418
+    second: jumpPlaye2_2
+  - first:
+      213: 1201758234676286935
+    second: jumpPlaye2_3
+  - first:
+      213: -814381727302974162
+    second: jumpPlaye2_4
+  - first:
+      213: -4676060172395384770
+    second: jumpPlaye2_5
+  - first:
+      213: 338912278021414064
+    second: jumpPlaye2_6
+  - first:
+      213: -8093812052860371602
+    second: jumpPlaye2_7
+  - first:
+      213: -893766288785954487
+    second: jumpPlaye2_8
+  - first:
+      213: 6471165767293289656
+    second: jumpPlaye2_9
+  - first:
+      213: -1343632532455758813
+    second: jumpPlaye2_10
+  - first:
+      213: -5674916739436917216
+    second: jumpPlaye2_11
+  - first:
+      213: 6479207293724009916
+    second: jumpPlaye2_12
+  - first:
+      213: 4725516237812972488
+    second: jumpPlaye2_13
+  - first:
+      213: -2986008979383452424
+    second: jumpPlaye2_14
+  - first:
+      213: -864430465151157675
+    second: jumpPlaye2_15
+  - first:
+      213: 1862031292392286937
+    second: jumpPlaye2_16
+  - first:
+      213: 1194603802541203989
+    second: jumpPlaye2_17
+  - first:
+      213: 6543036354713109254
+    second: jumpPlaye2_18
+  - first:
+      213: 2092669878993793825
+    second: jumpPlaye2_19
+  - first:
+      213: -6913982181676006276
+    second: jumpPlaye2_20
+  - first:
+      213: 1051396437850032306
+    second: jumpPlaye2_21
+  - first:
+      213: 1074241758744031513
+    second: jumpPlaye2_22
+  - first:
+      213: 382856023886729577
+    second: jumpPlaye2_23
+  - first:
+      213: -5277171461095232988
+    second: jumpPlaye2_24
+  - first:
+      213: -4440341225300050861
+    second: jumpPlaye2_25
+  - first:
+      213: -1910412198870632224
+    second: jumpPlaye2_26
+  - first:
+      213: -5444623346227036993
+    second: jumpPlaye2_27
+  - first:
+      213: 6297924904591222745
+    second: jumpPlaye2_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 82.66
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: jumpPlaye2_0
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 3260
+        width: 93
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad3661ec8e8301780800000000000000
+      internalID: -8714402706420767782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_1
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 3260
+        width: 93
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 181752cae4d206610800000000000000
+      internalID: 1612338482517471617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_2
+      rect:
+        serializedVersion: 2
+        x: 1876
+        y: 3260
+        width: 90
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24105b2f899cc8000800000000000000
+      internalID: 39628155483652418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_3
+      rect:
+        serializedVersion: 2
+        x: 2643
+        y: 3260
+        width: 91
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5d7cb4fb08da010800000000000000
+      internalID: 1201758234676286935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_4
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 2811
+        width: 92
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e258980422cb2b4f0800000000000000
+      internalID: -814381727302974162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_5
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 2811
+        width: 93
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e30750c4c0c4b1fb0800000000000000
+      internalID: -4676060172395384770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_6
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 2811
+        width: 100
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc1c75dbee04b400800000000000000
+      internalID: 338912278021414064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_7
+      rect:
+        serializedVersion: 2
+        x: 2643
+        y: 2811
+        width: 106
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6d7b7e12d00daf80800000000000000
+      internalID: -8093812052860371602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_8
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 2364
+        width: 118
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 949a1b4bb44b893f0800000000000000
+      internalID: -893766288785954487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_9
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 2364
+        width: 124
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b44f2acaf23ec950800000000000000
+      internalID: 6471165767293289656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_10
+      rect:
+        serializedVersion: 2
+        x: 1845
+        y: 2383
+        width: 155
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324e052a4557a5de0800000000000000
+      internalID: -1343632532455758813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_11
+      rect:
+        serializedVersion: 2
+        x: 2588
+        y: 2438
+        width: 187
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ec1ffda45ae31b0800000000000000
+      internalID: -5674916739436917216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_12
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 2012
+        width: 191
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb52a8094b4cae950800000000000000
+      internalID: 6479207293724009916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_13
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 2010
+        width: 196
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cbbe2f3bf7649140800000000000000
+      internalID: 4725516237812972488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_14
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 1996
+        width: 195
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fcf8bf57a09f86d0800000000000000
+      internalID: -2986008979383452424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_15
+      rect:
+        serializedVersion: 2
+        x: 2607
+        y: 1951
+        width: 176
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ab3a7621de004f0800000000000000
+      internalID: -864430465151157675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_16
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 1468
+        width: 155
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9da24bf489347d910800000000000000
+      internalID: 1862031292392286937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_17
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 1467
+        width: 127
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 512acc144d5149010800000000000000
+      internalID: 1194603802541203989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_18
+      rect:
+        serializedVersion: 2
+        x: 1878
+        y: 1467
+        width: 117
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 603442be5e88dca50800000000000000
+      internalID: 6543036354713109254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_19
+      rect:
+        serializedVersion: 2
+        x: 2646
+        y: 1467
+        width: 112
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 123b591ea28aa0d10800000000000000
+      internalID: 2092669878993793825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_20
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1020
+        width: 109
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7442dd66d99c00a0800000000000000
+      internalID: -6913982181676006276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_21
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 1020
+        width: 108
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b8892c5d7f479e00800000000000000
+      internalID: 1051396437850032306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_22
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 1019
+        width: 104
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91134d0203978ee00800000000000000
+      internalID: 1074241758744031513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_23
+      rect:
+        serializedVersion: 2
+        x: 2637
+        y: 1020
+        width: 101
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96113e7768d205500800000000000000
+      internalID: 382856023886729577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_24
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 572
+        width: 96
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42ae69a0488b3c6b0800000000000000
+      internalID: -5277171461095232988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_25
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 572
+        width: 95
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35cb7787e2db062c0800000000000000
+      internalID: -4440341225300050861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_26
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 572
+        width: 93
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e83eb71a3adc75e0800000000000000
+      internalID: -1910412198870632224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_27
+      rect:
+        serializedVersion: 2
+        x: 2644
+        y: 572
+        width: 91
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbcb658d9efc074b0800000000000000
+      internalID: -5444623346227036993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpPlaye2_28
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 124
+        width: 89
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d7ee383559b66750800000000000000
+      internalID: 6297924904591222745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      jumpPlaye2_0: -8714402706420767782
+      jumpPlaye2_1: 1612338482517471617
+      jumpPlaye2_10: -1343632532455758813
+      jumpPlaye2_11: -5674916739436917216
+      jumpPlaye2_12: 6479207293724009916
+      jumpPlaye2_13: 4725516237812972488
+      jumpPlaye2_14: -2986008979383452424
+      jumpPlaye2_15: -864430465151157675
+      jumpPlaye2_16: 1862031292392286937
+      jumpPlaye2_17: 1194603802541203989
+      jumpPlaye2_18: 6543036354713109254
+      jumpPlaye2_19: 2092669878993793825
+      jumpPlaye2_2: 39628155483652418
+      jumpPlaye2_20: -6913982181676006276
+      jumpPlaye2_21: 1051396437850032306
+      jumpPlaye2_22: 1074241758744031513
+      jumpPlaye2_23: 382856023886729577
+      jumpPlaye2_24: -5277171461095232988
+      jumpPlaye2_25: -4440341225300050861
+      jumpPlaye2_26: -1910412198870632224
+      jumpPlaye2_27: -5444623346227036993
+      jumpPlaye2_28: 6297924904591222745
+      jumpPlaye2_3: 1201758234676286935
+      jumpPlaye2_4: -814381727302974162
+      jumpPlaye2_5: -4676060172395384770
+      jumpPlaye2_6: 338912278021414064
+      jumpPlaye2_7: -8093812052860371602
+      jumpPlaye2_8: -893766288785954487
+      jumpPlaye2_9: 6471165767293289656
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

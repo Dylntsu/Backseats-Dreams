@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Skin_Naranja_Override
+  m_Controller: {fileID: 9100000, guid: 5b4f5f18fb79ffd47bbbbf64ee308163, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b84535a85dc6f94478ca5d6d5c11689e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 10c13d0d5ca06f34fa503a4c34a15652, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 82dc4b6fbf35e6b4ca83f3a1fae7f436, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cf8d213cbf1a5df4f91dc6151518d4e1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d8c6615811dade5438162ee5754f923b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fa03cc41d5fc4714ebcbed636ba6c1ec, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6f7ad975f81185d41a52990f6b2687f4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2ab8823846e7e5747b9cd5c43203c4f5, type: 2}

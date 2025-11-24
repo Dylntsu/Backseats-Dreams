@@ -1,0 +1,884 @@
+fileFormatVersion: 2
+guid: 29f9ee78888d00448b271a015d3f2e0b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6463396637887334017
+    second: fall_dead_0
+  - first:
+      213: 9052885604862804162
+    second: fall_dead_1
+  - first:
+      213: 8823884015685677503
+    second: fall_dead_2
+  - first:
+      213: -6095958655335699740
+    second: fall_dead_3
+  - first:
+      213: 5548973540035268036
+    second: fall_dead_4
+  - first:
+      213: 3979645602584404535
+    second: fall_dead_5
+  - first:
+      213: -7909488365793023567
+    second: fall_dead_6
+  - first:
+      213: 6668455218836634058
+    second: fall_dead_7
+  - first:
+      213: -2965103852851641119
+    second: fall_dead_8
+  - first:
+      213: 7915241348474441144
+    second: fall_dead_9
+  - first:
+      213: 8664786099819593477
+    second: fall_dead_10
+  - first:
+      213: -5370509646524206614
+    second: fall_dead_11
+  - first:
+      213: -6166796116934636197
+    second: fall_dead_12
+  - first:
+      213: -230218831751745110
+    second: fall_dead_13
+  - first:
+      213: -4497078505471659510
+    second: fall_dead_14
+  - first:
+      213: -7161669495687073494
+    second: fall_dead_15
+  - first:
+      213: -47879551140582789
+    second: fall_dead_16
+  - first:
+      213: 4644610691197819497
+    second: fall_dead_17
+  - first:
+      213: 5701342017026141724
+    second: fall_dead_18
+  - first:
+      213: -3837841250478604042
+    second: fall_dead_19
+  - first:
+      213: 6785809692293972485
+    second: fall_dead_20
+  - first:
+      213: 357793837911949661
+    second: fall_dead_21
+  - first:
+      213: 2312862010805740842
+    second: fall_dead_22
+  - first:
+      213: -3356078840147677283
+    second: fall_dead_23
+  - first:
+      213: -5392411888760581299
+    second: fall_dead_24
+  - first:
+      213: 31318411682831945
+    second: fall_dead_25
+  - first:
+      213: 3356116320289506305
+    second: fall_dead_26
+  - first:
+      213: -7335062493294491944
+    second: fall_dead_27
+  - first:
+      213: -5745249760610161214
+    second: fall_dead_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fall_dead_0
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 3253
+        width: 162
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f79754c90076d46a0800000000000000
+      internalID: -6463396637887334017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_1
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 3253
+        width: 162
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c0481e4e7f42ad70800000000000000
+      internalID: 9052885604862804162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_2
+      rect:
+        serializedVersion: 2
+        x: 1831
+        y: 3253
+        width: 162
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb13136e2cbb47a70800000000000000
+      internalID: 8823884015685677503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_3
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 3253
+        width: 160
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea6f3796edc66ba0800000000000000
+      internalID: -6095958655335699740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_4
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 2805
+        width: 159
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cd08d1f80ae10d40800000000000000
+      internalID: 5548973540035268036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_5
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 2805
+        width: 159
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7322df9279a8a3730800000000000000
+      internalID: 3979645602584404535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_6
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 2805
+        width: 170
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b962d1dc3adb3290800000000000000
+      internalID: -7909488365793023567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_7
+      rect:
+        serializedVersion: 2
+        x: 2594
+        y: 2805
+        width: 157
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac97b57c0bc1b8c50800000000000000
+      internalID: 6668455218836634058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 2357
+        width: 157
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e4c2a071c5d9d6d0800000000000000
+      internalID: -2965103852851641119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_9
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 2358
+        width: 158
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bd8d47d11698dd60800000000000000
+      internalID: 7915241348474441144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_10
+      rect:
+        serializedVersion: 2
+        x: 1823
+        y: 2358
+        width: 158
+        height: 218
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50f3d7ebc018f3870800000000000000
+      internalID: 8664786099819593477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_11
+      rect:
+        serializedVersion: 2
+        x: 2591
+        y: 2357
+        width: 158
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae1bd104eed1875b0800000000000000
+      internalID: -5370509646524206614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_12
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1909
+        width: 158
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5d4adfca932b6aa0800000000000000
+      internalID: -6166796116934636197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_13
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 1909
+        width: 159
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa1f4d831391eccf0800000000000000
+      internalID: -230218831751745110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_14
+      rect:
+        serializedVersion: 2
+        x: 1823
+        y: 1909
+        width: 154
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0231520dea2791c0800000000000000
+      internalID: -4497078505471659510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_15
+      rect:
+        serializedVersion: 2
+        x: 2596
+        y: 1909
+        width: 176
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2132dea983ac9c90800000000000000
+      internalID: -7161669495687073494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_16
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 1460
+        width: 194
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7aa24a4dc5e55ff0800000000000000
+      internalID: -47879551140582789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_17
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 1459
+        width: 206
+        height: 205
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ad3d0c0d8f47040800000000000000
+      internalID: 4644610691197819497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_18
+      rect:
+        serializedVersion: 2
+        x: 1867
+        y: 1457
+        width: 230
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1e2ad38b5c3f1f40800000000000000
+      internalID: 5701342017026141724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_19
+      rect:
+        serializedVersion: 2
+        x: 2651
+        y: 1442
+        width: 217
+        height: 186
+      alignment: 9
+      pivot: {x: 0.5, y: 0.73480684}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f0c1e867bf3dbac0800000000000000
+      internalID: -3837841250478604042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_20
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 978
+        width: 212
+        height: 158
+      alignment: 9
+      pivot: {x: 0.5072705, y: 0.80986696}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 502c59e56f90c2e50800000000000000
+      internalID: 6785809692293972485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_21
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 974
+        width: 236
+        height: 142
+      alignment: 9
+      pivot: {x: 0.5, y: 0.86151123}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d51c093999327f400800000000000000
+      internalID: 357793837911949661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_22
+      rect:
+        serializedVersion: 2
+        x: 1927
+        y: 981
+        width: 236
+        height: 169
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a256298aebfe81020800000000000000
+      internalID: 2312862010805740842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_23
+      rect:
+        serializedVersion: 2
+        x: 2713
+        y: 987
+        width: 223
+        height: 172
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9feace7310dc61d0800000000000000
+      internalID: -3356078840147677283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_24
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 543
+        width: 211
+        height: 172
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4315d715fd4a25b0800000000000000
+      internalID: -5392411888760581299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_25
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 544
+        width: 207
+        height: 172
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ed843fde34f6000800000000000000
+      internalID: 31318411682831945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_26
+      rect:
+        serializedVersion: 2
+        x: 1961
+        y: 546
+        width: 221
+        height: 169
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1044fb70302539e20800000000000000
+      internalID: 3356116320289506305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_27
+      rect:
+        serializedVersion: 2
+        x: 2724
+        y: 544
+        width: 226
+        height: 167
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d604e1768f943a90800000000000000
+      internalID: -7335062493294491944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fall_dead_28
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 91
+        width: 230
+        height: 116
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cdeee848c5c440b0800000000000000
+      internalID: -5745249760610161214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6cf9e02a413e5064ca7f2fd4e0ff55a5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      fall_dead_0: -6463396637887334017
+      fall_dead_1: 9052885604862804162
+      fall_dead_10: 8664786099819593477
+      fall_dead_11: -5370509646524206614
+      fall_dead_12: -6166796116934636197
+      fall_dead_13: -230218831751745110
+      fall_dead_14: -4497078505471659510
+      fall_dead_15: -7161669495687073494
+      fall_dead_16: -47879551140582789
+      fall_dead_17: 4644610691197819497
+      fall_dead_18: 5701342017026141724
+      fall_dead_19: -3837841250478604042
+      fall_dead_2: 8823884015685677503
+      fall_dead_20: 6785809692293972485
+      fall_dead_21: 357793837911949661
+      fall_dead_22: 2312862010805740842
+      fall_dead_23: -3356078840147677283
+      fall_dead_24: -5392411888760581299
+      fall_dead_25: 31318411682831945
+      fall_dead_26: 3356116320289506305
+      fall_dead_27: -7335062493294491944
+      fall_dead_28: -5745249760610161214
+      fall_dead_3: -6095958655335699740
+      fall_dead_4: 5548973540035268036
+      fall_dead_5: 3979645602584404535
+      fall_dead_6: -7909488365793023567
+      fall_dead_7: 6668455218836634058
+      fall_dead_8: -2965103852851641119
+      fall_dead_9: 7915241348474441144
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

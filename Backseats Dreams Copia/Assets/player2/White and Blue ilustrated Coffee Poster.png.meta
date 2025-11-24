@@ -1,0 +1,347 @@
+fileFormatVersion: 2
+guid: 4851b70ec9eb0db4d82eaec3d4e0950a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2619176902094720958
+    second: White and Blue ilustrated Coffee Poster_0
+  - first:
+      213: 6596184585584965811
+    second: White and Blue ilustrated Coffee Poster_1
+  - first:
+      213: 3176664794686094368
+    second: White and Blue ilustrated Coffee Poster_2
+  - first:
+      213: 4617780947162848532
+    second: White and Blue ilustrated Coffee Poster_3
+  - first:
+      213: 4083751093143310905
+    second: White and Blue ilustrated Coffee Poster_4
+  - first:
+      213: 2141396644209790353
+    second: White and Blue ilustrated Coffee Poster_5
+  - first:
+      213: 2429476042304253638
+    second: White and Blue ilustrated Coffee Poster_6
+  - first:
+      213: -551032184421240471
+    second: White and Blue ilustrated Coffee Poster_7
+  - first:
+      213: -387934087618879203
+    second: White and Blue ilustrated Coffee Poster_8
+  - first:
+      213: -171853963217809391
+    second: White and Blue ilustrated Coffee Poster_9
+  - first:
+      213: -4391791900779469994
+    second: White and Blue ilustrated Coffee Poster_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 614.3
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: White and Blue ilustrated Coffee Poster_0
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 4543
+        width: 930
+        height: 1370
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebf8345f38f295420800000000000000
+      internalID: 2619176902094720958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White and Blue ilustrated Coffee Poster_2
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 4972
+        width: 1067
+        height: 1402
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02cf0c1dcc7c51c20800000000000000
+      internalID: 3176664794686094368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White and Blue ilustrated Coffee Poster_3
+      rect:
+        serializedVersion: 2
+        x: 3392
+        y: 5203
+        width: 1062
+        height: 1247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41d553e2e47a51040800000000000000
+      internalID: 4617780947162848532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White and Blue ilustrated Coffee Poster_5
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 3074
+        width: 742
+        height: 1177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d865df6e4c7bd10800000000000000
+      internalID: 2141396644209790353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White and Blue ilustrated Coffee Poster_6
+      rect:
+        serializedVersion: 2
+        x: 1918
+        y: 3322
+        width: 2332
+        height: 1000
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ceeddba69b37b120800000000000000
+      internalID: 2429476042304253638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White and Blue ilustrated Coffee Poster_7
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1445
+        width: 692
+        height: 1090
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 961b3c3d5275a58f0800000000000000
+      internalID: -551032184421240471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White and Blue ilustrated Coffee Poster_8
+      rect:
+        serializedVersion: 2
+        x: 1952
+        y: 1186
+        width: 965
+        height: 1257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d11263fa008cd9af0800000000000000
+      internalID: -387934087618879203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White and Blue ilustrated Coffee Poster_9
+      rect:
+        serializedVersion: 2
+        x: 3069
+        y: 810
+        width: 1265
+        height: 1285
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 110d8212bb37d9df0800000000000000
+      internalID: -171853963217809391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 58727e6a4c23b424ab367d6077ae4cfa
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      White and Blue ilustrated Coffee Poster_0: 2619176902094720958
+      White and Blue ilustrated Coffee Poster_2: 3176664794686094368
+      White and Blue ilustrated Coffee Poster_3: 4617780947162848532
+      White and Blue ilustrated Coffee Poster_5: 2141396644209790353
+      White and Blue ilustrated Coffee Poster_6: 2429476042304253638
+      White and Blue ilustrated Coffee Poster_7: -551032184421240471
+      White and Blue ilustrated Coffee Poster_8: -387934087618879203
+      White and Blue ilustrated Coffee Poster_9: -171853963217809391
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
