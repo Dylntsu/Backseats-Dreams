@@ -15,6 +15,7 @@ TagManager:
   - MainMenuPanel
   - OptionsPanel
   - StorePanel
+  - ExitButton
   layers:
   - Default
   - TransparentFX

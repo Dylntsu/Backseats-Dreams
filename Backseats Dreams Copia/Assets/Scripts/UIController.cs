@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -52,8 +53,7 @@ public class UIController : MonoBehaviour
 
         if (canvas == null)
         {
-            Debug.LogError("¡ERROR! No se encontró un Canvas en esta escena.");
-            return;
+            return;// Si no se encuentra un Canvas, salir de la función
         }
 
         fadeScreen = FindCanvasGroupByNameTag("FadeScreen", canvas);
@@ -61,7 +61,16 @@ public class UIController : MonoBehaviour
         storePanel = FindCanvasGroupByNameTag("StorePanel", canvas);
         optionsPanel = FindCanvasGroupByNameTag("OptionsPanel", canvas);
 
-        // --- CONFIGURACIÓN INICIAL ---
+        GameObject exitBtnObj = GameObject.FindGameObjectWithTag("ExitButton");
+
+        if (exitBtnObj != null)
+        {
+            Button btn = exitBtnObj.GetComponent<Button>();
+
+            btn.onClick.RemoveAllListeners();
+
+            btn.onClick.AddListener(QuitGame);
+        }
 
         InitializePanelState(optionsPanel);
 
@@ -221,5 +230,16 @@ public class UIController : MonoBehaviour
             canvasGroup.gameObject.SetActive(false);
         }
         //
+    }
+    public void QuitGame()
+    {
+        Debug.Log("saliendo del juego");
+
+        Application.Quit();
+
+        // detener el modo de reproducción en el editor de Unity
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

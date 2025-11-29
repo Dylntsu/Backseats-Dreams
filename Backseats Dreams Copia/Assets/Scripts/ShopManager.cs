@@ -8,98 +8,68 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI totalCoinsText;
 
     [Header("Configuración de Niveles")]
-    public int maxLevel = 5; 
+    public int maxLevel = 5;
     public int baseCost = 500;
 
-    //claves de PlayerPrefs
-    private const string MAGNET_LEVEL_KEY = "Magnet_Level";
-    private const string SHIELD_LEVEL_KEY = "Shield_Level";
-    private const string DOUBLE_LEVEL_KEY = "DoubleCoins_Level";
-    private const string TOTAL_COINS_KEY = "TotalPlayerCoins";
+    private PlayerData currentData;
 
-    private int totalCoinsInBank;
-
-    void Start()
+    void OnEnable()
     {
+        currentData = SaveSystem.Load();
 
-        totalCoinsInBank = PlayerPrefs.GetInt(TOTAL_COINS_KEY, 0);
         UpdateCoinText();
+
+        Debug.Log($"Tienda abierta. Cargando datos frescos. Monedas: {currentData.coins}");
     }
 
-    private void UpdateCoinText()   
+    private void UpdateCoinText()
     {
-        totalCoinsText.text = totalCoinsInBank.ToString();
-    }
-
-// Logica de Compra
-    public void BuyMagnetUpgrade()
-    {
-        int currentLevel = PlayerPrefs.GetInt(MAGNET_LEVEL_KEY, 0);
-
-        if (currentLevel >= maxLevel)
+        if (totalCoinsText != null)
         {
-            Debug.Log("NIVEL MAXIMO DE IMAN");
-            return;
-        }
-
-        if (totalCoinsInBank >= baseCost)
-        {
-            // Pagar
-            totalCoinsInBank -= baseCost;
-            PlayerPrefs.SetInt(TOTAL_COINS_KEY, totalCoinsInBank);
-
-            // Subir Nivel
-            currentLevel++;
-            PlayerPrefs.SetInt(MAGNET_LEVEL_KEY, currentLevel);
-            PlayerPrefs.Save();
-
-            UpdateCoinText();
-            Debug.Log("Imán mejorado al Nivel: " + currentLevel);
-
+            totalCoinsText.text = "COINS: " + currentData.coins.ToString();
+            totalCoinsText.ForceMeshUpdate();
         }
         else
         {
-            Debug.Log("No tienes suficientes monedas.");
+            Debug.LogError("ERROR CRÍTICO: No has asignado el TotalCoinsText en el Inspector del ShopManager");
         }
     }
 
     public void BuyShieldUpgrade()
     {
-        int currentLevel = PlayerPrefs.GetInt(SHIELD_LEVEL_KEY, 0);
+        if (currentData.shieldLevel >= maxLevel) return;
 
-        if (currentLevel >= maxLevel) return;
-
-        if (totalCoinsInBank >= baseCost)
+        if (currentData.coins >= baseCost)
         {
-            totalCoinsInBank -= baseCost;
-            PlayerPrefs.SetInt(TOTAL_COINS_KEY, totalCoinsInBank);
+            currentData.coins -= baseCost;
+            currentData.shieldLevel++;
 
-            currentLevel++;
-            PlayerPrefs.SetInt(SHIELD_LEVEL_KEY, currentLevel);
-            PlayerPrefs.Save();
+            SaveSystem.Save(currentData); // Guardar
 
             UpdateCoinText();
-            Debug.Log("Escudo mejorado al Nivel: " + currentLevel);
+            Debug.Log("Escudo mejorado al Nivel: " + currentData.shieldLevel);
         }
     }
 
     public void BuyDoubleCoinsUpgrade()
     {
-        int currentLevel = PlayerPrefs.GetInt(DOUBLE_LEVEL_KEY, 0);
+        if (currentData.doubleCoinsLevel >= maxLevel) return;
 
-        if (currentLevel >= maxLevel) return;
-
-        if (totalCoinsInBank >= baseCost)
+        if (currentData.coins >= baseCost)
         {
-            totalCoinsInBank -= baseCost;
-            PlayerPrefs.SetInt(TOTAL_COINS_KEY, totalCoinsInBank);
+            currentData.coins -= baseCost;
+            currentData.doubleCoinsLevel++;
 
-            currentLevel++;
-            PlayerPrefs.SetInt(DOUBLE_LEVEL_KEY, currentLevel);
-            PlayerPrefs.Save();
+            SaveSystem.Save(currentData); // Guardar
 
             UpdateCoinText();
-            Debug.Log("Doble Monedas mejorado al Nivel: " + currentLevel);
+            Debug.Log("Doble Monedas mejorado al Nivel: " + currentData.doubleCoinsLevel);
         }
+    }
+    public void RefreshShopUI()
+    {
+        currentData = SaveSystem.Load();
+        UpdateCoinText();
+        Debug.Log("UI Forzada a actualizarse.");
     }
 }

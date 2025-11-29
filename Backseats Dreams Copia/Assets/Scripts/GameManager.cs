@@ -8,11 +8,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Panel de Juego (Fade-In)")]
+    [Header("Sistema de Guardado (JSON)")]
+    public PlayerData currentData; // <--- TUS DATOS VIVEN AQUI AHORA
+
+    [Header("Sistema de Pausa")]
+    public GameObject pausePanel;
+    public static bool isPaused = false;
+
+    [Header("Panel de Juego")]
     public CanvasGroup gameUIContainerCanvasGroup;
     public float fadeInDuration = 0.5f;
 
-    public float jumpScale = 1.2f;  
+    [Header("Animaciones UI")]
+    public float jumpScale = 1.2f;
     public float jumpDuration = 0.5f;
 
     [Header("UI de Partida")]
@@ -20,7 +28,6 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI scoreText;
-    private int coinsThisRun = 0;
     public TextMeshProUGUI finalScoreText;
     public GameObject newRecordText;
     public TextMeshProUGUI countdownText;
@@ -28,8 +35,6 @@ public class GameManager : MonoBehaviour
     public Transform ScoreContainer;
     public Transform CoinContainer;
     public Transform CoinBackground;
-
-    private float totalScore = 0f;
 
     [Header("Referencias del Juego")]
     public playerController player;
@@ -40,60 +45,57 @@ public class GameManager : MonoBehaviour
     public CanvasGroup fadeScreen;
     public float fadeDuration = 0.5f;
 
-    private const float ZOOM_DURATION = 0.5f;
-    private const float TARGET_SCALE = 300f;
-
     [Header("UI de Vidas")]
     public GameObject lifeIconPrefab;
     public Transform livesContainer;
-    private List<GameObject> lifeIcons = new List<GameObject>();
 
-    [Header("Lógica de Velocidad del Juego")]
-    public float baseSpeed = 10f; 
-
-    [Tooltip("Porcentaje de la velocidad normal al estar herido/agachado. 0.6 = 60%")]
+    [Header("Lógica de Velocidad")]
+    public float baseSpeed = 10f;
     [Range(0.1f, 1f)]
     public float slowSpeedMultiplier = 0.6f;
+    public float speedIncreaseRate = 0.1f;
 
     [Header("Audio")]
     public AudioMixer mainMixer;
     public AudioClip CountDownSound;
 
-    public float speedIncreaseRate = 0.1f;
-
-    // --- Variables Privadas ---
     private float currentGlobalSpeed;
     private int coinMultiplier = 1;
-    private const string TOTAL_COINS_KEY = "TotalPlayerCoins";
+    private int coinsThisRun = 0;
+    private float totalScore = 0f;
 
     private AudioSource musicSource;
     private AudioSource sfxSource;
-
     private float loadedMusicVolumeDb;
-    private const string MUSIC_VOLUME_KEY = "MusicaVolume";
+    private List<GameObject> lifeIcons = new List<GameObject>();
+
     private const float MIN_VOLUME = 0.0001f;
-
-    private const string HIGHSCORE_KEY = "HighScore";
-
+    private const float ZOOM_DURATION = 0.5f;
+    private const float TARGET_SCALE = 300f;
 
     void Start()
     {
-        //ocultar ui al inici
+        currentData = SaveSystem.Load();
+
+        // Configuración inicial
+        isPaused = false;
+        Time.timeScale = 1f;
+        Application.targetFrameRate = 60;
+
+        // Setup UI Inicial
         if (gameUIContainerCanvasGroup != null)
         {
             gameUIContainerCanvasGroup.alpha = 0f;
         }
         else
         {
-            ScoreContainer.gameObject.SetActive(false);
-            CoinContainer.gameObject.SetActive(false);
-            livesContainer.gameObject.SetActive(false);
-            CoinBackground.gameObject.SetActive(false);
+            if (ScoreContainer) ScoreContainer.gameObject.SetActive(false);
+            if (CoinContainer) CoinContainer.gameObject.SetActive(false);
+            if (livesContainer) livesContainer.gameObject.SetActive(false);
+            if (CoinBackground) CoinBackground.gameObject.SetActive(false);
         }
 
         currentGlobalSpeed = 0f;
-        Time.timeScale = 1f;
-
         totalScore = 0f;
         coinsThisRun = 0;
         UpdateCoinText();
@@ -101,6 +103,7 @@ public class GameManager : MonoBehaviour
         player = FindFirstObjectByType<playerController>();
         spawnManager = FindFirstObjectByType<SpawnManager>();
 
+        // Audio Setup
         AudioSource[] allAudioSources = GetComponents<AudioSource>();
         if (allAudioSources.Length >= 2)
         {
@@ -108,167 +111,110 @@ public class GameManager : MonoBehaviour
             sfxSource = allAudioSources[0].playOnAwake ? allAudioSources[1] : allAudioSources[0];
         }
 
-        if (fadeScreen != null)
-            fadeScreen.alpha = 0f;
+        if (fadeScreen != null) fadeScreen.alpha = 0f;
+
         InitializeLives();
 
         currentGlobalSpeed = baseSpeed;
 
-        float sliderValue = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, 1.0f);
+        float sliderValue = currentData.musicVolume;
+        loadedMusicVolumeDb = sliderValue <= MIN_VOLUME ? -80f : Mathf.Log10(sliderValue) * 20;
+        // Aplicamos el volumen al mixer inmediatamente
+        if (mainMixer != null) mainMixer.SetFloat("MusicVolume", loadedMusicVolumeDb);
 
-        if (sliderValue <= MIN_VOLUME)
-        {
-            loadedMusicVolumeDb = -80f;
-        }
-        else
-        {
-            loadedMusicVolumeDb = Mathf.Log10(sliderValue) * 20;
-        }
+
+        if (pausePanel != null) pausePanel.SetActive(false);
 
         StartCoroutine(StartCountdown());
     }
 
-    // ******************************************************************************
-    // CORRUTINA DEL ZOOM
-    // ******************************************************************************
-    private IEnumerator ZoomEffect(Transform textTransform)
+    // === GUARDADO AL MINIMIZAR ===
+    void OnApplicationPause(bool pauseStatus)
     {
-        Vector3 startScale = Vector3.one; // Aseguramos que empiece en 1
-        Vector3 endScale = new Vector3(TARGET_SCALE, TARGET_SCALE, TARGET_SCALE);
-        float time = 0;
-
-        while (time < ZOOM_DURATION)
+        if (pauseStatus)
         {
-            time += Time.deltaTime;
-            float normalizedTime = time / ZOOM_DURATION;
-
-            float accelerationCurve = normalizedTime * normalizedTime * normalizedTime;
-
-            textTransform.localScale = Vector3.Lerp(startScale, endScale, accelerationCurve);
-
-            yield return null;
+            // El usuario minimizó la app o recibió una llamada, guardar
+            SaveSystem.Save(currentData);
         }
-
-        textTransform.localScale = endScale;
     }
 
-    // CORRUTINA DE SALTO 
-    private IEnumerator JumpEffect(Transform textTransform)
+    // Respaldo por si se cierra
+    void OnApplicationQuit()
     {
-        Vector3 originalScale = textTransform.localScale;
-        Vector3 targetScale = originalScale * jumpScale;
-
-        float halfDuration = jumpDuration / 2f;
-        float time = 0f;
-
-        while (time < halfDuration)
-        {
-            time += Time.deltaTime;
-            float normalizedTime = time / halfDuration;
-            textTransform.localScale = Vector3.Lerp(originalScale, targetScale, normalizedTime);
-            yield return null;
-        }
-
-        time = 0f;
-        while (time < halfDuration)
-        {
-            time += Time.deltaTime;
-            float normalizedTime = time / halfDuration;
-            textTransform.localScale = Vector3.Lerp(targetScale, originalScale, normalizedTime);
-            yield return null;
-        }
-
-        textTransform.localScale = originalScale;
+        SaveSystem.Save(currentData);
     }
-
-    // CORRUTINA DE FADE IN 
-    private IEnumerator FadeInCanvasGroup(CanvasGroup canvasGroup, float duration)
-    {
-        float startAlpha = canvasGroup.alpha;
-        float targetAlpha = 1f;
-        float time = 0;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            float normalizedTime = time / duration;
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, normalizedTime);
-            yield return null;
-        }
-        canvasGroup.alpha = targetAlpha;
-    }
-
-    // ******************************************************************************
-    // CORRUTINA DE CUENTA REGRESIVA
-    // ******************************************************************************
-    private IEnumerator StartCountdown()
-    {
-        countdownText.gameObject.SetActive(true);
-
-        mainMixer.SetFloat("MusicVolume", -80f);
-        sfxSource.PlayOneShot(CountDownSound);
-
-        // cuenta regresiva 
-        countdownText.text = "3";
-        StartCoroutine(JumpEffect(countdownText.transform));
-        yield return new WaitForSeconds(1f);
-
-        countdownText.text = "2";
-        StartCoroutine(JumpEffect(countdownText.transform));
-        yield return new WaitForSeconds(1f);
-
-        countdownText.text = "1";
-        StartCoroutine(JumpEffect(countdownText.transform));
-        yield return new WaitForSeconds(1f);
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(livesContainer.GetComponent<RectTransform>());
-
-        countdownText.text = "Run!";
-
-        //zoom effect
-        countdownText.transform.localScale = Vector3.one;
-
-        yield return new WaitForSeconds(1f);
-
-        yield return StartCoroutine(ZoomEffect(countdownText.transform));
-
-        // inicia la partida
-        currentGlobalSpeed = baseSpeed;
-        spawnManager.StartSpawning();
-        mainMixer.SetFloat("MusicVolume", loadedMusicVolumeDb);
-
-        // HUD con fade-in
-        if (gameUIContainerCanvasGroup != null)
-        {
-            StartCoroutine(FadeInCanvasGroup(gameUIContainerCanvasGroup, fadeInDuration));
-        }
-              // Oculta el texto después del zoom y de haber iniciado el fade del HUD
-        countdownText.gameObject.SetActive(false);
-    }
+    // ===================================================
 
     void Update()
     {
-        if (player != null && !player.isDead)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            baseSpeed += speedIncreaseRate * Time.deltaTime;
-
-            if (player.isHurt || player.isCrouching)
+            if (gameOverPanel != null && !gameOverPanel.activeSelf && !countdownText.gameObject.activeSelf)
             {
-                currentGlobalSpeed = baseSpeed * slowSpeedMultiplier;
+                TogglePause();
             }
-            else
-            {
-                currentGlobalSpeed = baseSpeed;
-            }
-
-            float scoreThisFrame = GetCurrentSpeed() * Time.deltaTime;
-            totalScore += scoreThisFrame;
-            UpdateScoreText();
         }
-        else if (player != null && player.isDead)
+
+        if (player != null &&
+            player.currentState != playerController.PlayerState.Dead &&
+            player.currentState != playerController.PlayerState.FallingSewer)
+        {
+            if (!isPaused)
+            {
+                baseSpeed += speedIncreaseRate * Time.deltaTime;
+
+                if (player.currentState == playerController.PlayerState.Hurt ||
+                    player.currentState == playerController.PlayerState.Crouching)
+                {
+                    currentGlobalSpeed = baseSpeed * slowSpeedMultiplier;
+                }
+                else
+                {
+                    currentGlobalSpeed = baseSpeed;
+                }
+
+                totalScore += GetCurrentSpeed() * Time.deltaTime;
+                UpdateScoreText();
+            }
+        }
+        else if (player != null)
         {
             currentGlobalSpeed = 0f;
         }
+    }
+
+    public void TogglePause()
+    {
+        if (isPaused) ResumeGame();
+        else PauseGame();
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+
+        // GUARDA AL PAUSAR
+        SaveSystem.Save(currentData);
+
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(true);
+            CanvasGroup cg = pausePanel.GetComponent<CanvasGroup>();
+            if (cg != null)
+            {
+                cg.alpha = 1f;
+                cg.interactable = true;
+                cg.blocksRaycasts = true;
+            }
+        }
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        if (pausePanel != null) pausePanel.SetActive(false);
     }
 
     public float GetCurrentSpeed()
@@ -286,11 +232,12 @@ public class GameManager : MonoBehaviour
     {
         coinMultiplier = multiplier;
     }
+
     void UpdateScoreText()
     {
-        if (scoreText != null)
-            scoreText.text = totalScore.ToString("F0") + "m";
+        if (scoreText != null) scoreText.text = totalScore.ToString("F0") + "m";
     }
+
     void UpdateCoinText()
     {
         coinText.text = coinsThisRun.ToString();
@@ -298,22 +245,16 @@ public class GameManager : MonoBehaviour
 
     void InitializeLives()
     {
-        foreach (Transform child in livesContainer)
-        {
-            Destroy(child.gameObject);
-        }
+        foreach (Transform child in livesContainer) Destroy(child.gameObject);
         lifeIcons.Clear();
 
-        if (player == null)
-        {
-            Debug.LogError("¡GameManager no pudo encontrar al Player en Start()!");
-            return;
-        }
+        if (player == null) return;
 
         for (int i = 0; i < player.attempts; i++)
         {
             GameObject newLifeIcon = Instantiate(lifeIconPrefab, livesContainer);
-            newLifeIcon.transform.localPosition = new Vector3(newLifeIcon.transform.localPosition.x, newLifeIcon.transform.localPosition.y, 0);
+            Vector3 pos = newLifeIcon.transform.localPosition;
+            newLifeIcon.transform.localPosition = new Vector3(pos.x, pos.y, 0);
             lifeIcons.Add(newLifeIcon);
         }
     }
@@ -321,7 +262,6 @@ public class GameManager : MonoBehaviour
     public void RemoveLifeIcon()
     {
         if (lifeIcons.Count == 0) return;
-
         int lastIconIndex = lifeIcons.Count - 1;
         GameObject iconToRemove = lifeIcons[lastIconIndex];
         lifeIcons.RemoveAt(lastIconIndex);
@@ -336,67 +276,46 @@ public class GameManager : MonoBehaviour
         {
             float currentLinearVol = Mathf.Pow(10, loadedMusicVolumeDb / 20f);
             float targetLinearVol = currentLinearVol * 0.25f;
-            float targetDb;
-
-            if (targetLinearVol <= MIN_VOLUME)
-            {
-                targetDb = -80f;
-            }
-            else
-            {
-                targetDb = Mathf.Log10(targetLinearVol) * 20f;
-            }
-
+            float targetDb = targetLinearVol <= MIN_VOLUME ? -80f : Mathf.Log10(targetLinearVol) * 20f;
             mainMixer.SetFloat("MusicVolume", targetDb);
         }
+
         if (uiManager != null)
         {
             uiManager.ShowGameOverPanel();
-
-            if (player.isFell == true)
+            if (player.currentState == playerController.PlayerState.FallingSewer)
             {
                 gameOverText.text = "looks like you've fallen";
             }
         }
 
-        if (finalScoreText != null)
+        if (finalScoreText != null) finalScoreText.text = totalScore.ToString("F0") + "m";
+
+        // Sumar monedas al total global
+        currentData.coins += coinsThisRun;
+
+        // Revisar HighScore
+        if (totalScore > currentData.highScore)
         {
-            finalScoreText.text = totalScore.ToString("F0") + "m";
+            if (newRecordText != null) newRecordText.SetActive(true);
+            currentData.highScore = (int)totalScore; // Casteo a int
         }
 
-        float highScore = PlayerPrefs.GetFloat(HIGHSCORE_KEY, 0);
-
-        if (totalScore > highScore)
-        {
-            Debug.Log("¡Nuevo Récord!");
-            if (newRecordText != null)
-            {
-                newRecordText.SetActive(true);
-            }
-
-            PlayerPrefs.SetFloat(HIGHSCORE_KEY, totalScore);
-            PlayerPrefs.Save();
-        }
-
-        SaveCoinsToBank();
-    }
-    private void SaveCoinsToBank()
-    {
-        int totalCoinsInBank = PlayerPrefs.GetInt(TOTAL_COINS_KEY, 0);
-        totalCoinsInBank += coinsThisRun;
-        PlayerPrefs.SetInt(TOTAL_COINS_KEY, totalCoinsInBank);
-        PlayerPrefs.Save();
-        Debug.Log($"Partida terminada. Se guardaron {coinsThisRun} monedas. Nuevo total en banco: {totalCoinsInBank}");
+        // GUARDAR EN DISCO
+        SaveSystem.Save(currentData);
     }
 
     public void RetryGame()
     {
         Time.timeScale = 1f;
+        isPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMenu()
     {
+        Time.timeScale = 1f;
+        isPaused = false;
         StartCoroutine(GoToMenuCoroutine());
     }
 
@@ -406,7 +325,6 @@ public class GameManager : MonoBehaviour
         {
             fadeScreen.gameObject.SetActive(true);
             fadeScreen.blocksRaycasts = true;
-
             float elapsedTime = 0f;
             while (elapsedTime < fadeDuration)
             {
@@ -416,8 +334,89 @@ public class GameManager : MonoBehaviour
             }
             fadeScreen.alpha = 1f;
         }
-
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+    }
+
+    private IEnumerator StartCountdown()
+    {
+        countdownText.gameObject.SetActive(true);
+        mainMixer.SetFloat("MusicVolume", -80f);
+        sfxSource.PlayOneShot(CountDownSound);
+
+        string[] count = { "3", "2", "1" };
+        foreach (string c in count)
+        {
+            countdownText.text = c;
+            StartCoroutine(JumpEffect(countdownText.transform));
+            yield return new WaitForSeconds(1f);
+        }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(livesContainer.GetComponent<RectTransform>());
+
+        countdownText.text = "Run!";
+        countdownText.transform.localScale = Vector3.one;
+
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(ZoomEffect(countdownText.transform));
+
+        currentGlobalSpeed = baseSpeed;
+        spawnManager.StartSpawning();
+        mainMixer.SetFloat("MusicVolume", loadedMusicVolumeDb);
+
+        if (gameUIContainerCanvasGroup != null)
+            StartCoroutine(FadeInCanvasGroup(gameUIContainerCanvasGroup, fadeInDuration));
+
+        countdownText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ZoomEffect(Transform textTransform)
+    {
+        Vector3 startScale = Vector3.one;
+        Vector3 endScale = new Vector3(TARGET_SCALE, TARGET_SCALE, TARGET_SCALE);
+        float time = 0;
+        while (time < ZOOM_DURATION)
+        {
+            time += Time.deltaTime;
+            textTransform.localScale = Vector3.Lerp(startScale, endScale, Mathf.Pow(time / ZOOM_DURATION, 3));
+            yield return null;
+        }
+        textTransform.localScale = endScale;
+    }
+
+    private IEnumerator JumpEffect(Transform textTransform)
+    {
+        Vector3 originalScale = textTransform.localScale;
+        Vector3 targetScale = originalScale * jumpScale;
+        float halfDuration = jumpDuration / 2f;
+        float time = 0f;
+
+        while (time < halfDuration)
+        {
+            time += Time.deltaTime;
+            textTransform.localScale = Vector3.Lerp(originalScale, targetScale, time / halfDuration);
+            yield return null;
+        }
+        time = 0f;
+        while (time < halfDuration)
+        {
+            time += Time.deltaTime;
+            textTransform.localScale = Vector3.Lerp(targetScale, originalScale, time / halfDuration);
+            yield return null;
+        }
+        textTransform.localScale = originalScale;
+    }
+
+    private IEnumerator FadeInCanvasGroup(CanvasGroup canvasGroup, float duration)
+    {
+        float startAlpha = canvasGroup.alpha;
+        float time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, 1f, time / duration);
+            yield return null;
+        }
+        canvasGroup.alpha = 1f;
     }
 }

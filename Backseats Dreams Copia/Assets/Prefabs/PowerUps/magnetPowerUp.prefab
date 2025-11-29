@@ -213,6 +213,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   collectPowerUpSound: {fileID: 8300000, guid: e75da1f0ff34c5a45b64cb4cfa9a0d96, type: 3}
+  magnetBaseTime: 5
+  magnetBonusPerLevel: 2.5
+  shieldBaseTime: 5
+  shieldBonusPerLevel: 1.5
+  doubleBaseTime: 5
+  doubleBonusPerLevel: 2.5
 --- !u!114 &-1089529621727510406
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,22 +3,40 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public int coinValue = 1;
-    private GameManager gameManager;
     public ParticleSystem collectParticles;
     public AudioClip collectSound;
     public float magnetSpeed = 15f;
     public float magnetRange = 7f;
 
+    // --- REFERENCIAS CACHEADAS ---
+    private GameManager gameManager;
     private playerController playerController;
+    private SpriteRenderer spriteRenderer;
+    private Collider2D coinCollider;
+    private PoolReturn poolReturn; // El script que devuelve la moneda al Pool
+
     private bool isCollected = false;
 
 
-    private void Start()
+    private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playerController = GameObject.FindWithTag("Player").GetComponent<playerController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        coinCollider = GetComponent<Collider2D>();
+        poolReturn = GetComponent<PoolReturn>();
 
+        gameManager = FindFirstObjectByType<GameManager>();
+        playerController = FindFirstObjectByType<playerController>();
     }
+
+    private void OnEnable()
+    {
+        // Reiniciamos el estado cada vez que la moneda sale del Pool
+        isCollected = false;
+        // Restauramos los componentes que se desactivan al recogerla
+        spriteRenderer.enabled = true;
+        coinCollider.enabled = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (isCollected) return;
@@ -26,43 +44,43 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isCollected = true;
-
-            if (gameManager != null)
-            {
-                Debug.Log("Añadiendo moneda al contador.");
-                gameManager.AddCoin(coinValue);
-            }
             CollectCoin();
         }
     }
 
     private void CollectCoin()
     {
-        Debug.Log("¡Moneda recogida!");
+        if (gameManager != null)
+        {
+            gameManager.AddCoin(coinValue);
+        }
 
-        // oculta la moneda
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
+        spriteRenderer.enabled = false;
+        coinCollider.enabled = false;
 
         if (collectSound != null)
         {
             AudioSource.PlayClipAtPoint(collectSound, transform.position);
         }
 
-        // desvincula las particulas para que no se destruyan con la moneda
-        collectParticles.transform.SetParent(null);
+        if (collectParticles != null)
+        {
+            collectParticles.Play();
+        }
 
-        collectParticles.Play();
-
-        //tiempo de vida de las partículas
-        float particleLifeTime = collectParticles.main.startLifetime.constantMax;
-
-        Destroy(collectParticles.gameObject, particleLifeTime);
-
-        Destroy(gameObject);
+        if (poolReturn != null)
+        {
+            poolReturn.ReturnToPoolAfterCollision();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
+
     private void Update()
     {
+        // La lógica de magnetismo no genera GC y es eficiente.
         if (isCollected) return;
 
         if (playerController != null && playerController.isMagnetActive)

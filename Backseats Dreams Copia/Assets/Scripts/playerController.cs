@@ -3,13 +3,30 @@ using System.Collections;
 
 public class playerController : MonoBehaviour
 {
-    [Header("Estado del Jugador")]
-    public bool isGrounded;
-    public bool isDead = false;
+    // --- DEFINICION DE ESTADOS ---
+    public enum PlayerState
+    {
+        Running,        // Corriendo en el suelo
+        Jumping,        // En el aire 
+        Crouching,      // Deslizándose en el suelo
+        FastFalling,    // Cayendo rápido
+        Hurt,           // Recibiendo daño
+        Dead,           // Game Over por golpe
+        FallingSewer    // Game Over por alcantarilla
+    }
+
+    [Header("Estado Actual (Solo lectura)")]
+    public PlayerState currentState;
+
+    [Header("Efectos de Cámara")]
+    public CameraShake cameraShaker;
+    [Tooltip("Duración del temblor al chocar")]
+    public float hitShakeDuration = 0.4f;
+    [Tooltip("Fuerza del temblor (0.1 es suave, 0.5 es fuerte)")]
+    public float hitShakeMagnitude = 0.2f;
+
+    [Header("Configuración General")]
     public int attempts = 3;
-    public bool isFell = false;
-    public bool isCrouching = false;
-    public bool isHurt = false;
 
     [Header("Sonidos")]
     public AudioClip jumpSound;
@@ -23,12 +40,17 @@ public class playerController : MonoBehaviour
     public float jumpForce = 5.0f;
     public float fastFallForce = 15.0f;
 
+    [Header("Controles Móviles")]
+    public float swipeThreshold = 50f; // distancia minima
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
+
     [Header("Componentes y Referencias")]
     public SpriteRenderer playerSprite;
     public GameManager gameManager;
     public GameObject shieldVisual;
 
-    [Header("Efectos de Partículas")]
+    [Header("Efectos Visuales")]
     public GameObject shieldHitSfxPrefab;
     public GameObject shieldEndSfxPrefab;
     public ParticleSystem runEffectParticles;
@@ -41,11 +63,12 @@ public class playerController : MonoBehaviour
     [Header("Skins")]
     public AnimatorOverrideController skinNaranja;
 
-    //potenciadores
+    // --- ESTADO DE POTENCIADORES ---
     public bool isMagnetActive { get; private set; } = false;
     public bool isShieldActive { get; private set; } = false;
     public bool isDoubleCoinsActive { get; private set; } = false;
 
+    // --- VARIABLES PRIVADAS ---
     private Rigidbody2D rb;
     private Animator anim;
     private CapsuleCollider2D collider2d;
@@ -53,7 +76,6 @@ public class playerController : MonoBehaviour
     private Vector2 standColliderSize;
     private Vector2 standColliderOffset;
     private AudioSource audioSource;
-
     private float startingGameSpeed;
 
     void Start()
@@ -73,111 +95,334 @@ public class playerController : MonoBehaviour
         skinOriginal = anim.runtimeAnimatorController;
         EquiparSkin(skinNaranja);
 
-        if (gameManager != null)
-        {
-            startingGameSpeed = gameManager.baseSpeed;
-        }
-        else
-        {
-            startingGameSpeed = 10f;
-            Debug.LogWarning("PlayerController no pudo encontrar GameManager.");
-        }
+        if (gameManager != null) startingGameSpeed = gameManager.baseSpeed;
+        else startingGameSpeed = 10f;
+
+        ChangeState(PlayerState.Running);
     }
 
     void Update()
     {
-        if (!isDead)
+        CheckMobileInput();
+
+        switch (currentState)
         {
-            PlayerJump();
-            PlayerCrouch();
+            case PlayerState.Running:
+                HandleRunningState();
+                break;
+            case PlayerState.Jumping:
+                HandleJumpingState();
+                break;
+            case PlayerState.Crouching:
+                break;
+        }
+
+        if (currentState != PlayerState.Dead && currentState != PlayerState.FallingSewer)
+        {
             UpdateAnimationSpeed();
             HandleRunParticles();
         }
         else
         {
-            if (runEffectParticles != null && runEffectParticles.isEmitting)
+            if (runEffectParticles != null && runEffectParticles.isEmitting) runEffectParticles.Stop();
+        }
+    }
+
+    // ==================================================================
+    // --- LÓGICA DE INPUT MÓVIL Y TECLADO ---
+    // ==================================================================
+
+    private void CheckMobileInput()
+    {
+        // detectar inicio del toque
+        if (Input.GetMouseButtonDown(0))
+        {
+            startTouchPosition = Input.mousePosition;
+        }
+
+        // detectar fin del toque
+        if (Input.GetMouseButtonUp(0))
+        {
+            endTouchPosition = Input.mousePosition;
+            DetectSwipe();
+        }
+    }
+
+    private void DetectSwipe()
+    {
+        Vector2 swipeDelta = endTouchPosition - startTouchPosition;
+
+        if (swipeDelta.magnitude >= swipeThreshold)
+        {
+            if (Mathf.Abs(swipeDelta.y) > Mathf.Abs(swipeDelta.x))
             {
-                runEffectParticles.Stop();
+                if (swipeDelta.y > 0)
+                {
+                    // Swipe hacia arriba
+                    AttemptJump();
+                }
+                else
+                {
+                    // Swipe hacia abajo
+                    AttemptCrouchOrFall();
+                }
             }
         }
     }
+
+    //conexion de inputs con estados
+    private void AttemptJump()
+    {
+        if (currentState == PlayerState.Running)
+        {
+            ChangeState(PlayerState.Jumping);
+        }
+    }
+
+    private void AttemptCrouchOrFall()
+    {
+        if (currentState == PlayerState.Running)
+        {
+            ChangeState(PlayerState.Crouching);
+        }
+        else if (currentState == PlayerState.Jumping)
+        {
+            ChangeState(PlayerState.FastFalling);
+        }
+    }
+
+    public void OnSwipeUp()
+    {
+        if (currentState == PlayerState.Running)
+        {
+            ChangeState(PlayerState.Jumping);
+        }
+    }
+
+    public void OnSwipeDown()
+    {
+        if (currentState == PlayerState.Running)
+        {
+            ChangeState(PlayerState.Crouching);
+        }
+        else if (currentState == PlayerState.Jumping)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -10f);
+        }
+    }
+
+    // ==================================================================
+    // --- COMPORTAMIENTO POR ESTADO
+    // ==================================================================
+
+    void HandleRunningState()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            AttemptJump();
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            AttemptCrouchOrFall();
+        }
+    }
+
+    void HandleJumpingState()
+    {
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            AttemptCrouchOrFall();
+        }
+    }
+
+    // ==================================================================
+    // --- MÁQUINA DE ESTADOS
+    // ==================================================================
+    public void ChangeState(PlayerState newState)
+    {
+        if (currentState == newState) return;
+
+        ExitCurrentState();
+
+        currentState = newState;
+
+        switch (currentState)
+        {
+            case PlayerState.Running:
+                anim.SetBool("isGrounded", true);
+                break;
+
+            case PlayerState.Jumping:
+                anim.SetBool("isGrounded", false);
+                anim.SetTrigger("Jump");
+                if (jumpSound) audioSource.PlayOneShot(jumpSound);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+                break;
+
+            case PlayerState.Crouching:
+                StartCoroutine(CrouchRoutine());
+                break;
+
+            case PlayerState.FastFalling:
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+                rb.AddForce(Vector2.down * fastFallForce, ForceMode2D.Impulse);
+                break;
+
+            case PlayerState.Hurt:
+                StartCoroutine(HurtRoutine());
+                break;
+
+            case PlayerState.Dead:
+                anim.SetBool("isDead", true);
+                if (hurtSound) audioSource.PlayOneShot(hurtSound);
+                StartCoroutine(GameOverRoutine());
+                break;
+
+            case PlayerState.FallingSewer:
+                StartCoroutine(SewerFallRoutine());
+                break;
+        }
+    }
+
+    private void ExitCurrentState()
+    {
+        switch (currentState)
+        {
+            case PlayerState.Crouching:
+                StopCoroutine("CrouchRoutine");
+                collider2d.size = standColliderSize;
+                collider2d.offset = standColliderOffset;
+                anim.SetBool("isCrounching", false);
+                break;
+
+            case PlayerState.Hurt:
+                StopCoroutine("HurtRoutine");
+                playerSprite.color = Color.white;
+                break;
+        }
+    }
+
+    // ==================================================================
+    // --- FÍSICAS Y COLISIONES ---
+    // ==================================================================
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("floor"))
         {
-            isGrounded = true;
-            anim.SetBool("isGrounded", true);
+            if (currentState == PlayerState.Jumping || currentState == PlayerState.FastFalling)
+            {
+                ChangeState(PlayerState.Running);
+            }
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (currentState == PlayerState.Dead || currentState == PlayerState.FallingSewer) return;
 
-        if (isDead) return;
-
+        // Caída a alcantarilla
         if (collision.gameObject.CompareTag("sewer"))
         {
-            StartCoroutine(FallSewer());
-            audioSource.PlayOneShot(fallSound);
+            if (audioSource && fallSound) audioSource.PlayOneShot(fallSound);
+            ChangeState(PlayerState.FallingSewer);
         }
+        // Choque con obstáculo
         else if (collision.gameObject.CompareTag("hObstacle") || collision.gameObject.CompareTag("obstacle"))
         {
-            // logica escudo
+            // Si el escudo está activo, destruimos el obstáculo sin daño ni temblor
             if (isShieldActive)
             {
-                audioSource.PlayOneShot(destroyObstacle);
+                if (destroyObstacle) audioSource.PlayOneShot(destroyObstacle);
+                if (shieldHitSfxPrefab) Instantiate(shieldHitSfxPrefab, collision.transform.position, Quaternion.identity);
 
-                if (shieldHitSfxPrefab != null)
-                {
-                    Instantiate(shieldHitSfxPrefab, collision.transform.position, Quaternion.identity);
-                }
-
-                
                 collision.gameObject.SetActive(false);
-
                 return;
             }
 
-            // si el escudo no esta activo, procesa el daño
+            // --- AQUI ACTIVAMOS EL TEMBLOR DE CÁMARA ---
+            if (cameraShaker != null)
+            {
+                cameraShaker.TriggerShake(hitShakeDuration, hitShakeMagnitude);
+            }
+
+            // Lógica de Vidas
             if (attempts > 0)
             {
                 attempts--;
-
-                if (crashSound != null && audioSource != null)
-                {
-                    audioSource.PlayOneShot(crashSound);
-                }
-
-                if (gameManager != null)
-                {
-                    gameManager.RemoveLifeIcon();
-                }
-
-                StartCoroutine(FlashRed());
-                Debug.Log("Golpe. Quedan " + attempts + " intentos.");
+                if (crashSound) audioSource.PlayOneShot(crashSound);
+                if (gameManager) gameManager.RemoveLifeIcon();
 
                 if (collision.gameObject.CompareTag("hObstacle"))
                 {
                     anim.SetTrigger("Hurt");
                 }
 
+                ChangeState(PlayerState.Hurt);
             }
-            else // attempts = 0
+            else
             {
-                StartCoroutine(HandleGameOver());
+                ChangeState(PlayerState.Dead);
             }
         }
     }
 
+    // ==================================================================
+    // --- CORRUTINAS ---
+    // ==================================================================
+
+    private IEnumerator CrouchRoutine()
+    {
+        anim.SetBool("isCrounching", true);
+        collider2d.size = crouchColliderSize;
+        collider2d.offset = crouchColliderOffset;
+
+        yield return new WaitForSeconds(crouchDuration);
+
+        if (currentState == PlayerState.Crouching)
+        {
+            ChangeState(PlayerState.Running);
+        }
+    }
+
+    private IEnumerator HurtRoutine()
+    {
+        playerSprite.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        playerSprite.color = Color.white;
+
+        if (currentState == PlayerState.Hurt)
+        {
+            ChangeState(PlayerState.Running);
+        }
+    }
+
+    private IEnumerator SewerFallRoutine()
+    {
+        collider2d.enabled = false;
+        anim.SetBool("isFalling", true);
+
+        yield return new WaitForSeconds(1f);
+        rb.gravityScale = 20f;
+
+        if (gameManager) gameManager.GameOverScreen();
+    }
+
+    private IEnumerator GameOverRoutine()
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (gameManager) gameManager.GameOverScreen();
+    }
+
+    // ==================================================================
+    // --- AUXILIARES (Partículas, Skins, PowerUps) ---
+    // ==================================================================
 
     private void HandleRunParticles()
     {
         if (runEffectParticles == null) return;
 
-        bool isRunning = isGrounded && !isCrouching && !isHurt && !isDead;
-
-        if (isRunning)
+        if (currentState == PlayerState.Running)
         {
             if (!runEffectParticles.isEmitting) runEffectParticles.Play();
         }
@@ -190,189 +435,51 @@ public class playerController : MonoBehaviour
     private void UpdateAnimationSpeed()
     {
         if (gameManager == null || startingGameSpeed <= 0) return;
-
         float currentWorldSpeed = gameManager.GetCurrentSpeed();
-        float speedRatio = currentWorldSpeed / startingGameSpeed;
-        anim.SetFloat("runSpeedMultiplier", speedRatio);
+        anim.SetFloat("runSpeedMultiplier", currentWorldSpeed / startingGameSpeed);
     }
 
-    private void PlayerJump()
-    {
-        if (isCrouching) return;
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
-            isGrounded = false;
-            anim.SetBool("isGrounded", false);
-            anim.SetTrigger("Jump");
-
-            if (jumpSound != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(jumpSound);
-            }
-        }
-    }
-
-    private void PlayerCrouch()
-    {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (isGrounded && !isCrouching)
-            {
-                StartCoroutine(CrouchSequence());
-            }
-            else if (!isGrounded)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-                rb.AddForce(Vector2.down * fastFallForce, ForceMode2D.Impulse);
-            }
-        }
-    }
-
-    private IEnumerator CrouchSequence()
-    {
-        isCrouching = true;
-        anim.SetBool("isCrounching", true);
-        collider2d.size = crouchColliderSize;
-        collider2d.offset = crouchColliderOffset;
-
-        yield return new WaitForSeconds(crouchDuration);
-
-        if (!isDead)
-        {
-            collider2d.size = standColliderSize;
-            collider2d.offset = standColliderOffset;
-            anim.SetBool("isCrounching", false);
-            isCrouching = false;
-        }
-    }
-
-    private IEnumerator HandleGameOver()
-    {
-        Debug.Log("Game Over");
-        isDead = true;
-        anim.SetBool("isDead", true);
-
-        audioSource.PlayOneShot(hurtSound);
-
-        yield return new WaitForSeconds(1.0f);
-
-        if (gameManager != null)
-        {
-            gameManager.GameOverScreen();
-        }
-    }
-
-    // --- IMAN ---
+    // --- POWER UPS ---
     public void ActivateMagnet(float duration)
     {
-        StopCoroutine("MagnetCoroutine"); 
+        StopCoroutine("MagnetCoroutine");
         StartCoroutine(MagnetCoroutine(duration));
-
-        if (gameManager != null && gameManager.uiManager != null)
-        {
-            gameManager.uiManager.ActivatePowerUpIndicator(PowerUp.PowerUpType.Magnet, duration);
-        }
+        if (gameManager?.uiManager) gameManager.uiManager.ActivatePowerUpIndicator(PowerUp.PowerUpType.Magnet, duration);
     }
-    private IEnumerator MagnetCoroutine(float duration)
-    {
-        isMagnetActive = true;
-        yield return new WaitForSeconds(duration);
-        isMagnetActive = false;
-    }
+    private IEnumerator MagnetCoroutine(float duration) { isMagnetActive = true; yield return new WaitForSeconds(duration); isMagnetActive = false; }
 
-    // --- ESCUDO ---
     public void ActivateShield(float duration)
     {
         StopCoroutine("ShieldCoroutine");
         StartCoroutine(ShieldCoroutine(duration));
-
-        if (gameManager != null && gameManager.uiManager != null)
-        {
-            gameManager.uiManager.ActivatePowerUpIndicator(PowerUp.PowerUpType.Shield, duration);
-        }
+        if (gameManager?.uiManager) gameManager.uiManager.ActivatePowerUpIndicator(PowerUp.PowerUpType.Shield, duration);
     }
     private IEnumerator ShieldCoroutine(float duration)
     {
-        isShieldActive = true;
-        shieldVisual.SetActive(true);
-
+        isShieldActive = true; shieldVisual.SetActive(true);
         yield return new WaitForSeconds(duration);
-
-        isShieldActive = false;
-        shieldVisual.SetActive(false);
+        isShieldActive = false; shieldVisual.SetActive(false);
         Instantiate(shieldEndSfxPrefab, transform.position, Quaternion.identity);
     }
 
-    // --- MONEDAS DOBLES ---
     public void ActivateDoubleCoins(float duration)
     {
         StopCoroutine("DoubleCoinsCoroutine");
         StartCoroutine(DoubleCoinsCoroutine(duration));
-
-        if (gameManager != null && gameManager.uiManager != null)
-        {
-            gameManager.uiManager.ActivatePowerUpIndicator(PowerUp.PowerUpType.DoubleCoins, duration);
-        }
+        if (gameManager?.uiManager) gameManager.uiManager.ActivatePowerUpIndicator(PowerUp.PowerUpType.DoubleCoins, duration);
     }
     private IEnumerator DoubleCoinsCoroutine(float duration)
     {
         isDoubleCoinsActive = true;
-
-        if (gameManager != null)
-        {
-            gameManager.SetCoinMultiplier(2);
-        }
-
+        if (gameManager) gameManager.SetCoinMultiplier(2);
         yield return new WaitForSeconds(duration);
-
         isDoubleCoinsActive = false;
-
-        if (gameManager != null)
-        {
-            gameManager.SetCoinMultiplier(1);
-        }
+        if (gameManager) gameManager.SetCoinMultiplier(1);
     }
 
-    public IEnumerator FlashRed()
-    {
-        isHurt = true;
-        playerSprite.color = Color.red;
-        yield return new WaitForSeconds(0.25f);
-        playerSprite.color = Color.white;
-        isHurt = false;
-    }
-
-    public IEnumerator FallSewer()
-    {
-        if (isDead) yield break;
-
-        isDead = true;
-        isFell = true;
-        collider2d.enabled = false;
-
-        anim.SetBool("isFalling", true);
-
-        yield return new WaitForSeconds(1f);
-
-        rb.gravityScale = 20f;
-
-        if (gameManager != null)
-        {
-            gameManager.GameOverScreen();
-        }
-    }
-
+    // Equipamiento de skins
     public void EquiparSkin(AnimatorOverrideController nuevaSkin)
     {
-        if (nuevaSkin == null)
-        {
-            anim.runtimeAnimatorController = skinOriginal;
-        }
-        else
-        {
-            anim.runtimeAnimatorController = nuevaSkin;
-        }
+        anim.runtimeAnimatorController = (nuevaSkin != null) ? nuevaSkin : skinOriginal;
     }
 }

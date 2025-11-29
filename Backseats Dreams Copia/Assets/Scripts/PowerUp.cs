@@ -7,13 +7,7 @@ public class PowerUp : MonoBehaviour
     public PowerUpType type;
     public AudioClip collectPowerUpSound;
 
-    // Claves de NIVELES
-    private const string MAGNET_LEVEL_KEY = "Magnet_Level";
-    private const string SHIELD_LEVEL_KEY = "Shield_Level";
-    private const string DOUBLE_LEVEL_KEY = "DoubleCoins_Level";
-
-    // Configuración de Tiempos
-    [Header("Configuración por Tipo")]
+    [Header("Configuración de Tiempos")]
     public float magnetBaseTime = 5f;
     public float magnetBonusPerLevel = 2.5f;
 
@@ -23,10 +17,26 @@ public class PowerUp : MonoBehaviour
     public float doubleBaseTime = 5f;
     public float doubleBonusPerLevel = 2.5f;
 
+    private GameManager gameManager;
+
+    private void Start()
+    {
+
+        gameManager = FindFirstObjectByType<GameManager>();
+
+        if (gameManager == null)
+        {
+            Debug.LogError("CRÍTICO: El PowerUp no encuentra el GameManager. Asegúrate de que existe en la escena.");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            // Verificación de seguridad
+            if (gameManager == null) return;
+
             playerController controller = other.GetComponent<playerController>();
             AudioSource playerAudio = other.GetComponent<AudioSource>();
 
@@ -42,24 +52,24 @@ public class PowerUp : MonoBehaviour
 
                 if (type == PowerUpType.Magnet)
                 {
-                    level = PlayerPrefs.GetInt(MAGNET_LEVEL_KEY, 0);
+                    level = gameManager.currentData.magnetLevel; // <--- LECTURA DIRECTA DE MEMORIA
                     finalDuration = magnetBaseTime + (level * magnetBonusPerLevel);
                     controller.ActivateMagnet(finalDuration);
                 }
                 else if (type == PowerUpType.Shield)
                 {
-                    level = PlayerPrefs.GetInt(SHIELD_LEVEL_KEY, 0);
+                    level = gameManager.currentData.shieldLevel; // <--- LECTURA DIRECTA DE MEMORIA
                     finalDuration = shieldBaseTime + (level * shieldBonusPerLevel);
                     controller.ActivateShield(finalDuration);
                 }
                 else if (type == PowerUpType.DoubleCoins)
                 {
-                    level = PlayerPrefs.GetInt(DOUBLE_LEVEL_KEY, 0);
+                    level = gameManager.currentData.doubleCoinsLevel; // <--- LECTURA DIRECTA DE MEMORIA
                     finalDuration = doubleBaseTime + (level * doubleBonusPerLevel);
                     controller.ActivateDoubleCoins(finalDuration);
                 }
 
-                Debug.Log($"PowerUp {type} recogido. Nivel: {level}. Duración: {finalDuration}s");
+                Debug.Log($"PowerUp {type} recogido. Nivel obtenido del JSON: {level}. Duración: {finalDuration}s");
             }
 
             gameObject.SetActive(false);

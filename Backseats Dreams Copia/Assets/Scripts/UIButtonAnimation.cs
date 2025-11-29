@@ -60,8 +60,6 @@ public class UIButtonAnimation : MonoBehaviour, IPointerEnterHandler, IPointerEx
         StartCoroutine(AnimateScale(originalScale, hoverDuration));
     }
 
-    // --- LÓGICA PÚBLICA PARA EL BOTÓN DE PLAY ---
-    // funcion llamada desde el evento onclick
     public void PlayGameTransition()
     {
         if (isPlayButton)
