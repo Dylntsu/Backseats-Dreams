@@ -18,9 +18,9 @@
 * **🏃‍♂️ Mecánicas de Movimiento:** Implementación de un **Máquina de Estados Finita (FSM)** para gestionar saltos, deslizamientos, caída rápida y estados de daño sin *bugs* de animación.
 * **⚡ Sistema de Potenciadores:**
     * **Imán:** Atrae monedas cercanas.
-    * **Escudo:** Protege de un impacto.
+    * **Escudo:** Protege de impactos.
     * **Doble Monedas:** Multiplica el valor de recolección.
-* **🛒 Tienda y Progresión:** Sistema de economía robusto basado en **archivos JSON** para guardar el progreso del jugador, monedas acumuladas y niveles de mejora de los power-ups.
+* **🛒 Tienda y Progresión:** Sistema de economía basado en **archivos JSON** para guardar el progreso del jugador, monedas acumuladas y niveles de mejora de los power-ups.
 * **🚀 Optimización (Object Pooling):** Implementación de un sistema de reciclaje de objetos para obstáculos y monedas, eliminando el `Instantiate/Destroy` constante para mejorar el rendimiento (Garbage Collection).
 * **📉 Dificultad Progresiva:** La velocidad del juego aumenta gradualmente con el tiempo.
 
@@ -45,12 +45,7 @@ El desarrollo de este proyecto se centró en establecer una **arquitectura de so
 * **Modularidad:** Cada script tiene una responsabilidad única, separando el control del jugador del control de la interfaz (UI) y del sistema de guardado.
 * **Escalabilidad sin Caos:** Gracias a la implementación de **Máquinas de Estados (FSM)** y **Object Pooling**, la adición de nuevas mecánicas (como un nuevo Power-Up o un nuevo tipo de obstáculo) se realiza sin generar dependencias rígidas o *bugs* en el *core* del juego.
 * **Uso Estratégico de Patrones:** La aplicación de patrones como FSM y Object Pooling fue la columna vertebral que asegura que el código es robusto y que las futuras actualizaciones serán eficientes.
----
-🕹️ Jugar Demo
-Puedes jugar la versión más reciente del juego directamente en Itch.io:
 
-👉 Jugar Backseats Dreams en Itch.io
-https://dylntsu.itch.io/backseat-dream/devlog/1127706/dylntsu343-my-first-game
 ---
 
 ## 📂 Estructura del Proyecto
