@@ -17,7 +17,7 @@
     * **Imán:** Atrae monedas cercanas.
     * **Escudo:** Protege de un impacto.
     * **Doble Monedas:** Multiplica el valor de recolección.
-* **🛒 Tienda y Progresión:** Sistema de economía con `PlayerPrefs` para guardar monedas y mejorar la duración de los potenciadores (Sistema de Niveles).
+* **🛒 Tienda y Progresión:** Sistema de economía robusto basado en **archivos JSON** para guardar el progreso del jugador, monedas acumuladas y niveles de mejora de los power-ups.
 * **🚀 Optimización (Object Pooling):** Implementación de un sistema de reciclaje de objetos para obstáculos y monedas, eliminando el `Instantiate/Destroy` constante para mejorar el rendimiento (Garbage Collection).
 * **📉 Dificultad Progresiva:** La velocidad del juego aumenta gradualmente con el tiempo.
 
@@ -29,7 +29,7 @@
     * **Singleton:** Para `GameManager`, `UIManager` y `ShopManager`.
     * **Object Pooling:** Para la generación procedural de terreno y obstáculos.
     * **Observer/Event Driven (Simulado):** Comunicación desacoplada entre colisiones y UI.
-* **Persistencia de Datos:** Uso de `PlayerPrefs` para guardar HighScore, Monedas Totales y Niveles de Mejoras.
+* **Persistencia de Datos:** Sistema de guardado y carga mediante **serialización JSON**, permitiendo una gestión de datos escalable y segura para el HighScore y el inventario.
 
 ## 📂 Estructura del Proyecto
 
