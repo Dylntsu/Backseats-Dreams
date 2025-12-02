@@ -50,6 +50,7 @@ El desarrollo de este proyecto se centró en establecer una **arquitectura de so
 Puedes jugar la versión más reciente del juego directamente en Itch.io:
 
 👉 Jugar Backseats Dreams en Itch.io
+https://dylntsu.itch.io/backseat-dream/devlog/1127706/dylntsu343-my-first-game
 ---
 
 ## 📂 Estructura del Proyecto
