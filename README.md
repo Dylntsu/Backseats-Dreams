@@ -4,7 +4,6 @@
 
 [![Itch.io](https://img.shields.io/badge/Itch.io-Play_Now-fa5c5c?style=for-the-badge&logo=itch.io)](https://dylntsu.itch.io/backseat-dream/devlog/1127706/dylntsu343-my-first-game)
 ![Unity](https://img.shields.io/badge/Unity-2025%2B-black?style=for-the-badge&logo=unity)
-![C#](https://imgshields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp)
 ![Status](https://img.shields.io/badge/Status-Finished-success?style=for-the-badge)
 
 ---
