@@ -1,63 +1,63 @@
 # 🚗 Backseats Dreams - Endless Runner 2D
 
-> Un juego de carrera infinita desarrollado en Unity con enfoque en optimización y escalabilidad.
+> An endless runner game developed in Unity with a focus on optimization and scalability.
 
-[![Itch.io](https://img.shields.io/badge/Itch.io-Jugar_Ahora-fa5c5c?style=for-the-badge&logo=itch.io)](https://dylntsu.itch.io/backseat-dream/devlog/1127706/dylntsu343-my-first-game)
-![Unity](https://img.shields.io/badge/Unity-2022%2B-black?style=for-the-badge&logo=unity)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp)
-![Status](https://img.shields.io/badge/Status-Terminado-success?style=for-the-badge)
-
----
-
-## 🎮 Descripción
-
-**Backseats Dreams** es un Endless Runner 2D donde el jugador debe esquivar obstáculos, recolectar monedas y utilizar potenciadores estratégicos para alcanzar la mayor distancia posible. El proyecto destaca por su arquitectura de software optimizada para móviles y sistemas de progresión persistente.
-
-## ✨ Características Principales
-
-* **🏃‍♂️ Mecánicas de Movimiento:** Implementación de un **Máquina de Estados Finita (FSM)** para gestionar saltos, deslizamientos, caída rápida y estados de daño sin *bugs* de animación.
-* **⚡ Sistema de Potenciadores:**
-    * **Imán:** Atrae monedas cercanas.
-    * **Escudo:** Protege de impactos.
-    * **Doble Monedas:** Multiplica el valor de recolección.
-* **🛒 Tienda y Progresión:** Sistema de economía basado en **archivos JSON** para guardar el progreso del jugador, monedas acumuladas y niveles de mejora de los power-ups.
-* **🚀 Optimización (Object Pooling):** Implementación de un sistema de reciclaje de objetos para obstáculos y monedas, eliminando el `Instantiate/Destroy` constante para mejorar el rendimiento (Garbage Collection).
-* **📉 Dificultad Progresiva:** La velocidad del juego aumenta gradualmente con el tiempo.
+[![Itch.io](https://img.shields.io/badge/Itch.io-Play_Now-fa5c5c?style=for-the-badge&logo=itch.io)](https://dylntsu.itch.io/backseat-dream/devlog/1127706/dylntsu343-my-first-game)
+![Unity](https://img.shields.io/badge/Unity-2025%2B-black?style=for-the-badge&logo=unity)
+![C#](https://imgshields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp)
+![Status](https://img.shields.io/badge/Status-Finished-success?style=for-the-badge)
 
 ---
 
-## 🛠️ Tecnologías y Patrones
+## 🎮 Description
+
+**Backseats Dreams** is a 2D Endless Runner where the player must dodge obstacles, collect coins, and use strategic power-ups to achieve the highest possible distance. The project stands out for its software architecture optimized for mobile platforms and persistent progression systems.
+
+## ✨ Key Features
+
+* **🏃‍♂️ Movement Mechanics:** Implementation of a **Finite State Machine (FSM)** to manage jumping, sliding, quick fall, and damage states without animation bugs.
+* **⚡ Power-Up System:**
+    * **Magnet:** Attracts nearby coins.
+    * **Shield:** Protects from impacts.
+    * **Double Coins:** Multiplies the value of collected coins.
+* **🛒 Shop and Progression:** Economy system based on **JSON files** to save player progress, accumulated coins, and power-up upgrade levels.
+* **🚀 Optimization (Object Pooling):** Implementation of an object recycling system for obstacles and coins, eliminating constant `Instantiate/Destroy` calls to improve performance (Garbage Collection).
+* **📉 Progressive Difficulty:** Game speed gradually increases over time.
+
+---
+
+## 🛠️ Technologies and Patterns
 
 * **Engine:** Unity (2D).
-* **Lenguaje:** C#.
-* **Patrones de Diseño:**
-    * **Singleton:** Para `GameManager`, `UIManager` y `ShopManager`.
-    * **Object Pooling:** Para la generación procedural de terreno y obstáculos.
-    * **State Machine (FSM):** Para el control del `PlayerController`.
-* **Persistencia de Datos:** Sistema de guardado y carga mediante **serialización JSON**, permitiendo una gestión de datos escalable y segura para el HighScore y el inventario.
+* **Language:** C#.
+* **Design Patterns:**
+    * **Singleton:** For `GameManager`, `UIManager`, and `ShopManager`.
+    * **Object Pooling:** For procedural generation of terrain and obstacles.
+    * **State Machine (FSM):** For `PlayerController` management.
+* **Data Persistence:** Save and load system using **JSON serialization**, allowing for scalable and secure data management for HighScore and inventory.
 
 ---
 
-## 🏗️ Filosofía de Desarrollo y Arquitectura
+## 🏗️ Development Philosophy and Architecture
 
-El desarrollo de este proyecto se centró en establecer una **arquitectura de software sólida** desde el inicio, priorizando la **escalabilidad** y la **mantenibilidad** a largo plazo sobre la funcionalidad inmediata.
+The development of this project focused on establishing a **solid software architecture** from the start, prioritizing **scalability** and **long-term maintainability** over immediate functionality.
 
-* **Modularidad:** Cada script tiene una responsabilidad única, separando el control del jugador del control de la interfaz (UI) y del sistema de guardado.
-* **Escalabilidad sin Caos:** Gracias a la implementación de **Máquinas de Estados (FSM)** y **Object Pooling**, la adición de nuevas mecánicas (como un nuevo Power-Up o un nuevo tipo de obstáculo) se realiza sin generar dependencias rígidas o *bugs* en el *core* del juego.
-* **Uso Estratégico de Patrones:** La aplicación de patrones como FSM y Object Pooling fue la columna vertebral que asegura que el código es robusto y que las futuras actualizaciones serán eficientes.
+* **Modularity:** Each script has a unique responsibility, separating player control from the interface control (UI) and the save system.
+* **Scalability without Chaos:** Thanks to the implementation of **State Machines (FSM)** and **Object Pooling**, adding new mechanics (such as a new Power-Up or a new type of obstacle) can be done without generating rigid dependencies or bugs in the game's core.
+* **Strategic Pattern Usage:** The application of patterns like FSM and Object Pooling was the backbone that ensures the code is robust and future updates will be efficient.
 
 ---
 
-## 📂 Estructura del Proyecto
+## 📂 Project Structure
 
 ```bash
 ├── Scripts/
-│   ├── Managers/
-│   │   ├── GameManager.cs      # Control central del flujo de juego
-│   │   ├── SpawnManager.cs     # Lógica de Object Pooling y generación
-│   │   └── UIManager.cs        # Control de HUD y feedback visual
-│   ├── Player/
-│   │   └── PlayerController.cs # Física, inputs y FSM del jugador
-│   └── Objects/
-│       ├── PowerUp.cs          # Lógica modular de potenciadores
-│       └── MoveLeft.cs         # Comportamiento de desplazamiento del entorno
+│   ├── Managers/
+│   │   ├── GameManager.cs      # Central control of game flow
+│   │   ├── SpawnManager.cs     # Object Pooling and generation logic
+│   │   └── UIManager.cs        # HUD and visual feedback control
+│   ├── Player/
+│   │   └── PlayerController.cs # Player physics, inputs, and FSM
+│   └── Objects/
+│       ├── PowerUp.cs          # Modular power-up logic
+│       └── MoveLeft.cs         # Environment scrolling behavior
