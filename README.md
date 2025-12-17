@@ -12,6 +12,9 @@
 
 **Backseats Dreams** is a 2D Endless Runner where the player must dodge obstacles, collect coins, and use strategic power-ups to achieve the highest possible distance. The project stands out for its software architecture optimized for mobile platforms and persistent progression systems.
 
+<img width="1657" height="931" alt="image" src="https://github.com/user-attachments/assets/32bc2359-b470-4c0b-88c7-d7e8f32c7459" />
+
+---
 ## ✨ Key Features
 
 * **🏃‍♂️ Movement Mechanics:** Implementation of a **Finite State Machine (FSM)** to manage jumping, sliding, quick fall, and damage states without animation bugs.
@@ -22,6 +25,7 @@
 * **🛒 Shop and Progression:** Economy system based on **JSON files** to save player progress, accumulated coins, and power-up upgrade levels.
 * **🚀 Optimization (Object Pooling):** Implementation of an object recycling system for obstacles and coins, eliminating constant `Instantiate/Destroy` calls to improve performance (Garbage Collection).
 * **📉 Progressive Difficulty:** Game speed gradually increases over time.
+![Uploading image.png…]()
 
 ---
 
