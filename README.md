@@ -26,7 +26,7 @@
 * **🚀 Optimization (Object Pooling):** Implementation of an object recycling system for obstacles and coins, eliminating constant `Instantiate/Destroy` calls to improve performance (Garbage Collection).
 * **📉 Progressive Difficulty:** Game speed gradually increases over time.
   
-![Uploading image.png…]()
+<img width="943" height="530" alt="image" src="https://github.com/user-attachments/assets/f5b482fd-c967-475f-b8fd-3da85828787b" />
 
 ---
 
