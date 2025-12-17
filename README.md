@@ -25,6 +25,7 @@
 * **🛒 Shop and Progression:** Economy system based on **JSON files** to save player progress, accumulated coins, and power-up upgrade levels.
 * **🚀 Optimization (Object Pooling):** Implementation of an object recycling system for obstacles and coins, eliminating constant `Instantiate/Destroy` calls to improve performance (Garbage Collection).
 * **📉 Progressive Difficulty:** Game speed gradually increases over time.
+  
 ![Uploading image.png…]()
 
 ---
